@@ -1,22 +1,23 @@
 <?php
 namespace videoclub\DAO\Impl;
 
+use App\Models\Director;
+use Illuminate\Http\Request;
 use videoclub\DTO\DirectoresDTO;
 use videoclub\DAO\IDirectoresDAO;
 
 
-class DirectoresDAOImpl extends IDirectoresDAO{
+class DirectoresDAOImpl implements IDirectoresDAO{
 
     public function read(): array{
 
         $result = [];
-        $director = Director::get()->toArray();
+        $directores = Director::get()->toArray();
 
         foreach ($directores as $director){
             array_push($result, new DirectoresDTO(
                 $director['id'],
-                $director['name'],
-                $director['id_pelicula']
+                $director['name']
             ));
         }
 
@@ -28,8 +29,7 @@ class DirectoresDAOImpl extends IDirectoresDAO{
 
         $result = new DirectoresDTO(
             $director['id'],
-            $director['name'],
-            $director['id_pelicula']
+            $director['name']
         );
 
         return $result;
@@ -37,8 +37,7 @@ class DirectoresDAOImpl extends IDirectoresDAO{
     public function update(int $id, Request $request): bool{
         $director = Director::where('id', intval($id))->update([
             'id'=>$request->id,
-            'name'=>$request->name,
-            'id_pelicula'=>$request->id_pelicula
+            'name'=>$request->name
         ]);
 
         return $director;
@@ -51,7 +50,6 @@ class DirectoresDAOImpl extends IDirectoresDAO{
 
         $director->id = $request->id;
         $director->name = $request->name;
-        $director->id_pelicula = $request->id_pelicula;
 
         return $director->save();
     }

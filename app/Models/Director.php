@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Director extends Model
 {
     use HasFactory;
+
+    public function peliculas(){
+        return $this->hasMany("App\Models\Pelicula","director_id","id");
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace videoclub\DTO;
+use JsonSerializable;
 
 class ActoresDTO implements JsonSerializable{
 
