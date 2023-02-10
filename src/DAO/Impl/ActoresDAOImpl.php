@@ -15,8 +15,7 @@ class ActoresDAOImpl extends IActoresDAO{
         foreach ($actores as $actor){
             array_push($result, new ActoresDTO(
                 $actor['id'],
-                $actor['name'],
-                $actor['id_pelicula']
+                $actor['name']
             ));
         }
 
@@ -28,8 +27,7 @@ class ActoresDAOImpl extends IActoresDAO{
 
         $result = new ActoresDTO(
             $actor['id'],
-            $actor['name'],
-            $actor['id_pelicula']
+            $actor['name']
         );
 
         return $result;
@@ -37,8 +35,7 @@ class ActoresDAOImpl extends IActoresDAO{
     public function update(int $id, Request $request): bool{
         $actor = Actor::where('id', intval($id))->update([
             'id'=>$request->id,
-            'name'=>$request->name,
-            'id_pelicula'=>$request->id_pelicula
+            'name'=>$request->name
         ]);
 
         return $actor;
@@ -51,7 +48,6 @@ class ActoresDAOImpl extends IActoresDAO{
 
         $actor->id = $request->id;
         $actor->name = $request->name;
-        $actor->id_pelicula = $request->id_pelicula;
 
         return $actor->save();
     }

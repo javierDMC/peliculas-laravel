@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Actor extends Model
 {
     use HasFactory;
+
+    public function actor(){
+        return $this->belongToMany(Actor::class);
+    }
 }
